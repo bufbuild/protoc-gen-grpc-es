@@ -1,0 +1,11 @@
+{
+  "include": ["src/gen/**/*.ts", "test/**/*.ts"],
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    // This config only type-checks generated code and tests; tests are run
+    // with tsx.
+    "noEmit": true,
+    // Tests use Node.js modules and globals such as __dirname and Buffer.
+    "types": ["node"]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["ES2017", "ES2018.AsyncIterable"],
+    // Prevent tsc from picking up @types/node and others
+    "types": [],
+    // As strict as possible
+    "strict": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    // We build with Node16 module resolution. This package is CommonJS (no
+    // "type": "module" in package.json), so Node16 treats our source as
+    // CommonJS. verbatimModuleSyntax is off so the ESM import syntax we author
+    // lowers to require() on emit.
+    "moduleResolution": "Node16",
+    "module": "Node16",
+    "verbatimModuleSyntax": false,
+    "skipLibCheck": false,
+  },
+}

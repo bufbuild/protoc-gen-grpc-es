@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+const { runNodeJs } = require("@bufbuild/protoplugin");
+const {
+  protocGenGrpcEs,
+} = require("../dist/cjs/src/protoc-gen-grpc-es-plugin.js");
+
+runNodeJs(protocGenGrpcEs);
