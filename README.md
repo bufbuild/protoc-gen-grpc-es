@@ -27,7 +27,7 @@ To install the runtime libraries and the `protoc` plugins, run:
 
 ```shell
 npm install @bufbuild/protobuf @grpc/grpc-js
-npm install --save-dev @bufbuild/protoc-gen-es @bufbuild/protoc-gen-grpc-es @types/node
+npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es @bufbuild/protoc-gen-grpc-es @types/node
 ```
 
 ### Generating code
@@ -42,10 +42,10 @@ inputs:
 plugins:
   - local: protoc-gen-es
     out: src/gen
-    opt: target=ts
+    opt: target=ts,import_extension=js
   - local: protoc-gen-grpc-es
     out: src/gen
-    opt: target=ts
+    opt: target=ts,import_extension=js
 ```
 
 Place your `.proto` files in the `./proto` directory, then run:
