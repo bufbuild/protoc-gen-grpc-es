@@ -25,7 +25,7 @@ It's a compatibility layer for projects already built on [`@grpc/grpc-js`](https
 
 To install the runtime libraries and the `protoc` plugins, run:
 
-```shell
+```bash
 npm install @bufbuild/protobuf @grpc/grpc-js
 npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es @bufbuild/protoc-gen-grpc-es @types/node
 ```
@@ -40,12 +40,14 @@ version: v2
 inputs:
   - directory: proto
 plugins:
+  # You will need to adapt these values to your environment:
+  # https://protobufes.com/reference/environments/
   - local: protoc-gen-es
     out: src/gen
-    opt: target=ts,import_extension=js
+    opt: target=ts
   - local: protoc-gen-grpc-es
     out: src/gen
-    opt: target=ts,import_extension=js
+    opt: target=ts
 ```
 
 Place your `.proto` files in the `./proto` directory, then run:
@@ -58,7 +60,7 @@ npx buf generate
 
 For every Protobuf file that contains services, the plugin generates a `_grpc.ts` file next to the `_pb.ts` file from `protoc-gen-es`. For example, the following service:
 
-```protobuf
+```proto
 syntax = "proto3";
 package example;
 
@@ -85,7 +87,7 @@ To implement a server:
 
 ```ts
 import * as grpc from "@grpc/grpc-js";
-import { ElizaServiceDefinition, type ElizaServiceServer } from "./gen/eliza_grpc.js";
+import { ElizaServiceDefinition, type ElizaServiceServer } from "./gen/eliza_grpc";
 
 const implementation: ElizaServiceServer = {
   say(call, callback) {
@@ -102,11 +104,11 @@ To call it with a client:
 
 ```ts
 import * as grpc from "@grpc/grpc-js";
-import { ElizaServiceClient } from "./gen/eliza_grpc.js";
+import { ElizaServiceClient } from "./gen/eliza_grpc";
 
 const client = new ElizaServiceClient("localhost:50051", grpc.credentials.createInsecure());
 client.say({ sentence: "Hi" }, (error, response) => {
-  if (error) {
+  if (error !== null) {
     throw error;
   }
   console.log(response?.sentence);
