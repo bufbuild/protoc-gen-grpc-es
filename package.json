@@ -22,7 +22,7 @@
     "protoc-gen-grpc-es": "bin/protoc-gen-grpc-es"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "scripts": {
     "all": "npm run build && npm run generate && npm run test && npm run lint && npm run format && npm run license-header",
